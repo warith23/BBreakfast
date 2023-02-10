@@ -1,46 +1,56 @@
-@model IList<BuberBreakfast.Entities.BreakFast>
-    <div>
-        <div class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                    <th>
-                        Start-Date
-                    </th>
-                    <th>
-                        End-Date
-                    </th>
-                </tr>
-                <tbody>
-                    @foreach (var Breakfast in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Breakfast.Id
-                            </td>
-                            <td>
-                                @Breakfast.Name
-                            </td>
-                            <td>
-                                @Breakfast.Description
-                            </td>
-                            <td>
-                                @Breakfast.StartDateTime
-                            </td>
-                            <td>
-                                @Breakfast.EndDateTime
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </thead>
-        </div>
-    </div>
+@model IEnumerable<BuberBreakfast.Entities.BreakFast>
+
+<div class="row">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                @* <th>
+                    Description
+                </th> *@
+                <th>
+                    Details
+                </th>
+                <th>
+                    Update
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var Breakfast in Model)
+                {
+                    <tr>
+                        <td>
+                            @Breakfast.Id
+                        </td>
+                        <td>
+                            @Breakfast.Name
+                        </td>
+                        @* <td>
+                            @Breakfast.Description
+                        </td> *@
+                        <td>
+                            <a asp-controller="BreakFast" asp-action="Details" asp-route-id="@Breakfast.Id">Details</a>
+                        </td>
+                        <td>
+                            <a asp-controller="BreakFast" asp-action="Update" asp-route-id="@Breakfast.Id">Update</a>
+                        </td>
+                        <td>
+                            <a asp-controller="BreakFast" asp-action="Delete" asp-route-id ="@Breakfast.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    <span>
+    <a asp-action="Create">Create</a>
+    </span>
+</div>

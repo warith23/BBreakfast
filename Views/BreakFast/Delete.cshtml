@@ -1,0 +1,31 @@
+@model BuberBreakfast.Models.Response.BreakFastResponseModel
+<div>
+    <dl>
+        <dd>
+            ID
+        </dd>
+        <dt>
+            @Model.Data.BreakFastId
+        </dt>
+        <dd>
+            Name
+        </dd>
+        <dt>
+            @Model.Data.Name
+        </dt>
+        <dd>
+            Description
+        </dd>
+        <dt>
+            @Model.Data.Description
+        </dt>
+    </dl>
+</div>
+<span>Are you sure you want to Delete this BreakFast?</span>
+<form asp-action="DeleteBreakFast" method="post" asp-route-id="@Model.Data.BreakFastId">
+    <button>Yes</button>
+</form>
+<br />
+<form asp-action="Index">
+    <button>No</button>
+</form>

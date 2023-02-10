@@ -16,8 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\HP\Documents\BuberBreakfast
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/HP/Documents/BuberBreakfast/Views/BreakFast/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlYWtGYXN0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/BuberBreakfast/Views/BreakFast/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlYWtGYXN0XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/BuberBreakfast/Views/BreakFast/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlYWtGYXN0XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP/Documents/BuberBreakfast/Views/BreakFast/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlYWtGYXN0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP/Documents/BuberBreakfast/Views/BreakFast/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJlYWtGYXN0XFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP/Documents/BuberBreakfast/Views/Home/Index.cshtml]

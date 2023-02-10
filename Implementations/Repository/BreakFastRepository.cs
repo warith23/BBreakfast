@@ -1,8 +1,6 @@
 ﻿using BuberBreakfast.Context;
-using BuberBreakfast.DTO;
 using BuberBreakfast.Contracts.Repository;
 using BuberBreakfast.Entities;
-using System.Xml.Linq;
 
 namespace BuberBreakfast.Implementations.Repository
 {
@@ -36,6 +34,7 @@ namespace BuberBreakfast.Implementations.Repository
         {
             var breakfast = GetById(id);
             _context.BreakFasts.Remove(breakfast);
+            _context.SaveChanges();
             return true;
         }
 
@@ -58,7 +57,7 @@ namespace BuberBreakfast.Implementations.Repository
 
         public BreakFast GetById(int id)
         {
-            var breakfast = _context.BreakFasts.SingleOrDefault(User => User.Id == id);
+            var breakfast = _context.BreakFasts.FirstOrDefault(User => User.Id == id);
             return breakfast;
         }
 

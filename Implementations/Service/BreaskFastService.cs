@@ -12,7 +12,7 @@ namespace BuberBreakfast.Implementations.Service
     {
         private readonly IBreakFastRepository _breakFastRepository;
 
-        public BreaskFastService(ApplicationContext context,IBreakFastRepository breakFastRepository)
+        public BreaskFastService(IBreakFastRepository breakFastRepository)
         {
             _breakFastRepository = breakFastRepository;
         }
@@ -27,15 +27,13 @@ namespace BuberBreakfast.Implementations.Service
                     Status = false
                 };
             }
-            else
-            {
-                _breakFastRepository.Delete(id);
-                return new BreakFastResponseModel
-                { Message = "BreakFast Succesfully deleted",
-                  Status = true
-                };
-
-            }
+           
+            _breakFastRepository.Delete(id);
+            return new BreakFastResponseModel
+            { 
+                Message = "BreakFast Succesfully deleted",
+                Status = true
+            };
         }
 
         public BreakFastResponseModel GetBreakFast(int id)
@@ -49,20 +47,21 @@ namespace BuberBreakfast.Implementations.Service
                     Status = false
                 };
             }
-            else
+           
+            return new BreakFastResponseModel
             {
-                return new BreakFastResponseModel
+                Data = new BreakFastDto
                 {
-                    Data = new BreakFastDto
-                    {
-                        BreakFastId = breakfast.Id,
-                        Name = breakfast.Name,
-                        Description = breakfast.Description
-                    },
-                    Status = true,
-                    Message = "BreakFast successfully retrieved"
-                };
-            }
+                    BreakFastId = breakfast.Id,
+                    Name = breakfast.Name,
+                    Description = breakfast.Description,
+                    StartDateTime = breakfast.StartDateTime,
+                    EndDateTime = breakfast.EndDateTime
+                },
+                Status = true,
+                Message = "BreakFast successfully retrieved"
+            };
+           
         }
 
         public BreakFastsResponseModel PrintAllBreakFast()
@@ -86,15 +85,15 @@ namespace BuberBreakfast.Implementations.Service
 
         public BreakFastResponseModel RegisterBreakFast(BreakFastDto request)
         {
-            // var checkId = _breakFastRepository.FindBreakFast(request.BreakFastId);
-            // if (checkId == null)
-            // {
-            //     return new BreakFastResponseModel
-            //     {
-            //         Status = false,
-            //         Message = "Breafast not found"
-            //     };
-            // }
+            var checkId = _breakFastRepository.GetById(request.BreakFastId);
+            if (checkId != null)
+            {
+                return new BreakFastResponseModel
+                {
+                    Status = false,
+                    Message = "Breafast exists",
+                };
+            }
             
             var breakfast = new BreakFast
             {
@@ -109,11 +108,10 @@ namespace BuberBreakfast.Implementations.Service
             {
                 Data = new BreakFastDto
                 {
-                    BreakFastId = breakfast.Id,
                     Name = breakfast.Name,
                     Description = breakfast.Description,
-                    StartDateTime = request.StartDateTime,
-                    EndDateTime = request.EndDateTime,
+                    StartDateTime = breakfast.StartDateTime,
+                    EndDateTime = breakfast.EndDateTime,
                 },
                 Status = true,
                 Message = "Breakfast Registered Successfully",
@@ -131,18 +129,16 @@ namespace BuberBreakfast.Implementations.Service
                     Status = true
                 };
             }
-            else
+           
+            breakfast.Id = updateBreakFastDto.Id;
+            breakfast.Name = updateBreakFastDto.Name;
+            breakfast.Description = updateBreakFastDto.Description;
+            _breakFastRepository.Update(id);
+            return new BreakFastResponseModel
             {
-                breakfast.Id = updateBreakFastDto.Id;
-                breakfast.Name = updateBreakFastDto.Name;
-                breakfast.Description = updateBreakFastDto.Description;
-                _breakFastRepository.Update(id);
-                return new BreakFastResponseModel
-                {
-                  Message= "BreakFast successfully updated",
-                  Status =  true
-                };
-            }
+                Message= "BreakFast successfully updated",
+                Status =  true
+            };  
         }
     }
 }
