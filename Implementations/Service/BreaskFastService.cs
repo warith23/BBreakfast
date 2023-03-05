@@ -67,6 +67,7 @@ namespace BuberBreakfast.Implementations.Service
         public BreakFastsResponseModel PrintAllBreakFast()
         {
             var breakfast = _breakFastRepository.PrintAllBreakFast();
+            var response = new BreakFastsResponseModel();
             if (breakfast == null)
             {
                 return new BreakFastsResponseModel
@@ -75,24 +76,36 @@ namespace BuberBreakfast.Implementations.Service
                     Message = "Breakfast Not Found",
                 };
             }
-            return new BreakFastsResponseModel
+            response.Data = breakfast.Select(b => new BreakFastDto
             {
-                Data = breakfast,
-                Status = true,
-                Message = "Breakfast Sucessfully retrieved",
-            };
+                BreakFastId = b.Id,
+                Name = b.Name,
+                Description = b.Description
+            }).ToList();
+            response.Status  = true;
+            response.Message = "Breakfast Sucessfully retrieved";
+            return response;
+            // return new BreakFastsResponseModel
+            // {
+            //     Data = breakfast,
+            //     Status = true,
+            //     Message = "Breakfast Sucessfully retrieved",
+            // };
         }
 
         public BreakFastResponseModel RegisterBreakFast(BreakFastDto request)
         {
             var checkId = _breakFastRepository.GetById(request.BreakFastId);
+            var response = new BreakFastResponseModel();
             if (checkId != null)
             {
-                return new BreakFastResponseModel
-                {
-                    Status = false,
-                    Message = "Breafast exists",
-                };
+                // return new BreakFastResponseModel
+                // {
+                //     Status = false,
+                //     Message = "Breafast exists",
+                // };
+                response.Message = "Breafast exists";
+                return response;
             }
             
             var breakfast = new BreakFast
@@ -103,19 +116,18 @@ namespace BuberBreakfast.Implementations.Service
                 StartDateTime = request.StartDateTime,
                 EndDateTime = request.EndDateTime
             };
-            _breakFastRepository.Create(breakfast);
-            return new BreakFastResponseModel
+            try
             {
-                Data = new BreakFastDto
-                {
-                    Name = breakfast.Name,
-                    Description = breakfast.Description,
-                    StartDateTime = breakfast.StartDateTime,
-                    EndDateTime = breakfast.EndDateTime,
-                },
-                Status = true,
-                Message = "Breakfast Registered Successfully",
-            };
+                _breakFastRepository.Create(breakfast);
+            }
+            catch (Exception e)
+            {
+                response.Message = $"An Error occurred: {e.Message}";
+                return response;
+            }
+            response.Message = "Breakfast created Succesfully";
+            response.Status = true;
+            return response;
         }
 
         public BreakFastResponseModel UpdateBreakFast(int id, UpdateBreakFastDto updateBreakFastDto)
@@ -140,5 +152,19 @@ namespace BuberBreakfast.Implementations.Service
                 Status =  true
             };  
         }
+
+        //_breakFastRepository.Create(breakfast);
+            // return new BreakFastResponseModel
+            // {
+            //     Data = new BreakFastDto
+            //     {
+            //         Name = breakfast.Name,
+            //         Description = breakfast.Description,
+            //         StartDateTime = breakfast.StartDateTime,
+            //         EndDateTime = breakfast.EndDateTime,
+            //     },
+            //     Status = true,
+            //     Message = "Breakfast Registered Successfully",
+            // };
     }
 }

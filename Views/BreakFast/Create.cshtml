@@ -1,4 +1,4 @@
-@model BuberBreakfast.DTO.BreakFastDto
+ @model BuberBreakfast.DTO.BreakFastDto
 
 @{
     Layout = "_Layout";
@@ -12,7 +12,7 @@
     }
 </style>
 
-<h2>@title</h2>
+<h2>@title</h2> 
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <form method="post">
@@ -46,3 +46,54 @@
 <span>
     <a asp-action="Index">Breakfasts</a>
 </span>
+
+
+@* @{
+    ViewData["Title"] = "Create BreakFast";
+    var status = ViewBag.Status == false ? "alert-danger" : "alert-success";
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class='alert @status alert-dismissible' BreakFast="alert">
+        @ViewBag.Message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-center">
+
+    <form asp-action="Create">
+        <div class="col-md-12 mb-2">
+            <label for="BreakFastId" class="form-label">BreakFastId:</label>
+            <input type="number" class="form-control" placeholder="Enter Id" name="BreakFastId">
+        </div>
+
+        <div class="col-md-12 mb-2">
+            <label for="Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" placeholder="Enter Name" name="Name">
+        </div>
+
+        <div class="col-md-12 mb-2">
+            <label for="StartDateTime" class="form-label">StartDateTime:</label>
+            <input type="datetime-local" class="form-control" placeholder="Enter StartDateTime" name="StartDateTime">
+        </div>
+
+        <div class="col-md-12 mb-2">
+            <label for="EndDateTime" class="form-label">EndDateTime:</label>
+            <input type="datetime-local" class="form-control" placeholder="Enter EndDateTime" name="EndDateTime">
+        </div>
+
+        <div class="col-md-12 mb-2">
+            <label for="Description" class="form-label">Description:</label>
+            <textarea class="form-control" placeholder="Enter Description" name="Description"></textarea>
+        </div>
+
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Create BreakFast</button>
+        </div>
+    </form>
+</div>
+<span>
+    <a asp-action="Index">Breakfasts</a>
+</span> *@

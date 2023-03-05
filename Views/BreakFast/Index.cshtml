@@ -1,4 +1,4 @@
-@model IEnumerable<BuberBreakfast.Entities.BreakFast>
+ @model IEnumerable<BuberBreakfast.DTO.BreakFastDto>
 
 <div class="row">
     <table class="table table-striped table-bordered">
@@ -29,7 +29,7 @@
                 {
                     <tr>
                         <td>
-                            @Breakfast.Id
+                            @Breakfast.BreakFastId
                         </td>
                         <td>
                             @Breakfast.Name
@@ -38,13 +38,13 @@
                             @Breakfast.Description
                         </td> *@
                         <td>
-                            <a asp-controller="BreakFast" asp-action="Details" asp-route-id="@Breakfast.Id">Details</a>
+                            <a asp-controller="BreakFast" asp-action="Details" asp-route-id="@Breakfast.BreakFastId">Details</a>
                         </td>
                         <td>
-                            <a asp-controller="BreakFast" asp-action="Update" asp-route-id="@Breakfast.Id">Update</a>
+                            <a asp-controller="BreakFast" asp-action="Update" asp-route-id="@Breakfast.BreakFastId">Update</a>
                         </td>
                         <td>
-                            <a asp-controller="BreakFast" asp-action="Delete" asp-route-id ="@Breakfast.Id">Delete</a>
+                            <a asp-controller="BreakFast" asp-action="Delete" asp-route-id ="@Breakfast.BreakFastId">Delete</a>
                         </td>
                     </tr>
                 }

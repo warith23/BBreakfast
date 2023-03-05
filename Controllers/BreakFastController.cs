@@ -20,6 +20,13 @@ namespace BuberBreakfast.Controllers
             var breakfasts = _breakFastService.PrintAllBreakFast();
             return View(breakfasts.Data);
         }
+         
+         // this also works for index(Viewing all data)
+        /*public IActionResult Index()
+        {
+            var breakfasts = _breakFastService.PrintAllBreakFast().Data;
+            return View(breakfasts);
+        }*/
  
         public IActionResult Create()
         {
